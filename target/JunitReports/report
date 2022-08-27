@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="17.832">
+<testcase classname="Navigate to ParaBank Website and verify the menus are available" name="Validate sub-menus from the UI" time="17.521">
+<system-out><![CDATA[Given The website is loaded.................................................passed
+When Navigate to the given URL..............................................passed
+Then verify the Left Menus are displayed....................................passed
+Then I check if the ATM services menus are available........................passed
+Then I will close the browsers..............................................passed
+]]></system-out>
+</testcase>
+</testsuite>
