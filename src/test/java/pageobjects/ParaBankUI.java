@@ -11,9 +11,9 @@ public class ParaBankUI {
     final private By captionEleLocator = By.xpath("//*[@id=\"topPanel\"]/p");
     final private By leftMenuEleLocator = By.xpath("//*[@id=\"headerPanel\"]/ul[1]/li");
     final private By atmMenuEleLocator =By.xpath("//*[@id='rightPanel']/ul[1]/li");
-    final private By onlineServiceLocator = By.xpath("//*[@id=\"rightPanel\"]/ul[2]");
-    final private By footerPanelMenuLocator = By.xpath("//*[@id=\"footerPanel\"]/ul[1]");
-    final private By latestMenuLocator = By.xpath("//*[@id=\"rightPanel\"]/ul[3]");
+    final private By onlineServiceLocator = By.xpath("//*[@id=\"rightPanel\"]/ul[2]/li");
+    final private By footerPanelMenuLocator = By.xpath("//*[@id=\"footerPanel\"]/ul[1]/li");
+    final private By latestMenuLocator = By.xpath("//*[@id=\"rightPanel\"]/ul[3]/li");
 
     public WebElement getCaptionEle(){
         WebElement captionEle = Browser.driver.findElement(this.captionEleLocator);

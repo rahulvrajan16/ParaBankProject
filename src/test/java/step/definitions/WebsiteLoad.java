@@ -1,6 +1,7 @@
 package step.definitions;
 
 import common.Browser;
+import common.Utils;
 import common.WebSiteURL;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,11 +15,12 @@ import pageobjects.ParaBankUI;
 
 import java.util.Arrays;
 import java.util.List;
+
+
 @Slf4j
 public class WebsiteLoad {
 
         ParaBankUI p = new ParaBankUI();
-//        Logger logger = LogManager.getLogger(WebsiteLoad.class);
 
         @Given("^The website is loaded$")
         public void the_website_is_loaded() {
@@ -31,11 +33,6 @@ public class WebsiteLoad {
 
                 Browser.driver.navigate().to(WebSiteURL.PARA_BANK);
                 Thread.sleep(10000);
-
-//                TakesScreenshot scrShot = ((TakesScreenshot)Browser.driver );
-//                File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-//                File dstFile = new File("C:/Users/rahul/Desktop/Screenshot");
-//                FileUtils.copyFile(srcFile,dstFile);
         }
 
         @Then("^Display ParaBank website$")
@@ -62,7 +59,6 @@ public class WebsiteLoad {
                 int expectedSizeofElements = listofLeftMenus.size();
                 int actualElements = 6;
                 Assert.assertEquals(actualElements,expectedSizeofElements);
-                System.out.println("expectedSizeofElements"+expectedSizeofElements);
                 List<String> expectedLeftMenuItemsList = Arrays.asList("Solutions","About Us","Services","Products","Locations","Admin Page");
                 for(WebElement checkLeftMenuEle: listofLeftMenus){
                         String actualLeftMenuValue = checkLeftMenuEle.getText();
@@ -85,7 +81,8 @@ public class WebsiteLoad {
 
         @Then("^I check if the Online service menus are available$")
         public void i_check_if_the_online_service_menus_are_available() {
-                List<String>expectedOnlineServiceMenu =Arrays.asList("Bill pay","Account History","Transfer Funds");
+                System.out.println("Online service menus are available");
+                List<String>expectedOnlineServiceMenu =Arrays.asList("Online Services","Bill Pay","Account History","Transfer Funds");
                 List<WebElement>listOfOnlineServiceMenu = p.getOnlineServiceMenu();
                 for(WebElement onlineServiceEle:listOfOnlineServiceMenu){
                         String actualOnlineServiceMenu = onlineServiceEle.getText();
@@ -94,7 +91,7 @@ public class WebsiteLoad {
         }
         @Then("^I check if the footer panel menus are available$")
         public void i_check_if_the_footer_panel_menus_are_available() {
-                List<String> expectedFooterPanelMenu = Arrays.asList("Home","About Us","Services","Products","Locations","Forum","Site Map","Contact Us");
+                List<String> expectedFooterPanelMenu = Arrays.asList("Home|","About Us|","Services|","Products|","Locations|","Forum|","Site Map|","Contact Us");
                 List<WebElement> listOfFooterPanelMenu = p.getFooterPanelMenu();
                 for (WebElement  footerPanelEle: listOfFooterPanelMenu){
                         String actualFooterPanelMenu =footerPanelEle.getText();
@@ -103,15 +100,19 @@ public class WebsiteLoad {
         }
         @Then("^I verify the Latest News menu's are displayed$")
         public void i_verify_the_latest_news_menus_are_displayed()  {
-               List<String> expectedLatestNewsMenus = Arrays.asList("8/20/2022","ParaBank Is Now Re-Opened","New! Online Bill Pay","New! Online Account Services");
+                Utils ut = new Utils();
+                String yesterdaysDate  = Utils.YesterdayDate();
+//                System.out.println("Date: "+yesterdaysDate);
+               List<String> expectedLatestNewsMenus = Arrays.asList(yesterdaysDate,"ParaBank Is Now Re-Opened","New! Online Bill Pay","New! Online Account Transfers");
                List<WebElement> listOfLatestMenu = p.getLatestMenu();
                for(WebElement latestMenuEle: listOfLatestMenu){
-                       System.out.println(latestMenuEle.getText());
+                       String actualLatestmenuEle = latestMenuEle.getText();
+                       Assert.assertTrue(expectedLatestNewsMenus.contains(actualLatestmenuEle));
                }
         }
-
         @Then("^I will close the browsers$")
         public void i_will_close_the_browsers() throws Throwable {
+                //close all browsers
                 Browser.CloseAllBrowserWindows();
         }
 }

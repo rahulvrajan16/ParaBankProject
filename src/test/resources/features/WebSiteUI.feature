@@ -13,9 +13,9 @@ Scenario: Validate the ParaBank website is displaying
     When Navigate to the given URL
     Then verify the Left Menus are displayed
     Then I check if the ATM services menus are available
-#    Then I check if the Online service menus are available
-#    Then I check if the footer panel menus are available
-#    Then I verify the Latest News menu's are displayed
+    Then I check if the Online service menus are available
+    Then I check if the footer panel menus are available
+    Then I verify the Latest News menu's are displayed
     Then I will close the browsers
 
 
