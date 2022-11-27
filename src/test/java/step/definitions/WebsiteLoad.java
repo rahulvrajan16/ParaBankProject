@@ -35,7 +35,7 @@ public class WebsiteLoad {
                 Thread.sleep(10000);
         }
 
-        @Then("^Display ParaBank website$")
+        @Given("^Display ParaBank website$")
         public void display_parabank_website(){
                 //verify that the page title is correct
                 String actualTitle = Browser.driver.getTitle();
@@ -107,12 +107,15 @@ public class WebsiteLoad {
                List<WebElement> listOfLatestMenu = p.getLatestMenu();
                for(WebElement latestMenuEle: listOfLatestMenu){
                        String actualLatestmenuEle = latestMenuEle.getText();
+                       System.out.println("Expected:"+expectedLatestNewsMenus);
+                       System.out.println("Actual: "+actualLatestmenuEle);
                        Assert.assertTrue(expectedLatestNewsMenus.contains(actualLatestmenuEle));
                }
         }
         @Then("^I will close the browsers$")
         public void i_will_close_the_browsers() throws Throwable {
                 //close all browsers
+                System.out.println("Closing all the browser windows");
                 Browser.CloseAllBrowserWindows();
         }
 }
